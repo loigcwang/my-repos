@@ -14,7 +14,7 @@ export const getUserInfo = () => requests({
     headers: {
         // 'content-type': 'application/json',
         Accept: 'application/vnd.github+json',
-        'Authorization': 'token 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'
+        'Authorization': 'token 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'
     }
 })
 

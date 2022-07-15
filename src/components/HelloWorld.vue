@@ -2,25 +2,51 @@
   <div>
     <header class="header-top">
       <div class="img">
-        <img :title="title" width="120" :src="users.avatar_url" :alt="alt" />
+        <img :title="title" width="100" :src="users.avatar_url" :alt="alt" />
         <!-- 头像 -->
       </div>
       <div class="users">
         <h1 class="name">{{ users.name }}</h1>
         <!-- 名称-->
       </div>
-      <div class="autograph">
-        {{ users.bio }}
-      </div>
+      <!-- <div class="qianming">
+        <div class="autograph">
+          {{ users.bio }}
+        </div>
+      </div> -->
       <div class="nax">
         <ul>
+          <a :href="users.public_repos">
+            <li class="repos">
+              <p class="reposa">{{ users.public_repos }}</p>
+              <p>Repos</p>
+              <!-- fork和个人仓库 -->
+            </li>
+          </a>
           <li>
-            <span class="contant"> {{ users.followers }}</span>
-            <span class="label">Repos</span>
+            <p class="contnt">{{ users.followers }}</p>
+            <p class="fontsize">Followes</p>
+            <!-- 跟随者 -->
           </li>
-        </ul>
-        <ul>
-          <li></li>
+          <li class="namea">
+            <p>{{ users.followers }}</p>
+            <p class="fontsize">Starred</p>
+            <!-- start仓库 -->
+          </li>
+          <li>
+            <a :href="users.following">
+              <p class="contnt">{{ users.following }}</p>
+              <p class="fontsize">Following</p>
+            </a>
+            <!-- 被跟随者 -->
+          </li>
+          <li>
+            <a :href="users.following">
+              <p class="contnt">{{ users.following }}</p>
+              <p class="fontsize">Start</p>
+            </a>
+            <!-- 点赞仓库 -->
+          </li>
         </ul>
       </div>
     </header>
@@ -47,7 +73,7 @@ export default {
       this.tableData = data.data;
     });
     getUserInfo().then((data) => {
-      console.log(">>>>>>>>>>", data.data);
+      console.log(data.data);
       // this.tableData = data.data;
       this.users = data.data;
     });
@@ -93,11 +119,48 @@ li {
   list-style: none;
 }
 
+.header-top .nax {
+  text-align: center;
+  border-top: 1px solid #efefef;
+  padding: 0 0 0.9375rem 0;
+  margin-top: 1.15rem;
+}
+.header-top .nax .repos {
+  color: #bd081c !important;
+}
+.header-top .nax ul {
+  margin: 0.8125rem auto 0;
+  display: table;
+  table-layout: fixed;
+}
+.header-top .nax ul li {
+  display: table-cell;
+  width: 6.25rem;
+}
 .header-top .nax ul li span {
   color: #bd081c !important;
 }
 .header-top .nax .contant {
   font-size: 1rem;
   font-weight: bold;
+}
+.fontsize {
+  font-size: 0.75rem;
+  color: #9a9a9a;
+}
+.reposa {
+  /* font-size: .75rem; */
+  color: #bd081c !important;
+}
+a {
+  text-decoration: none;
+}
+.contnt {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.namea :hover {
+  color: #bd081c;
 }
 </style>
