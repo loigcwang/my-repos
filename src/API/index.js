@@ -12,9 +12,9 @@ export const getUserInfo = () => requests({
     url: 'https://api.github.com/users/logicwang',
     method: 'GET',
     headers: {
-        'content-type': 'application/json',
-        // Accept: 'application/vnd.github+json',
-        'Authorization': 'token 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'
+        // 'content-type': 'application/json',
+        Accept: 'application/vnd.github+json',
+        'Authorization': 'token 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'
     }
 })
 
