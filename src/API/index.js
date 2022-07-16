@@ -9,7 +9,7 @@ export const getUserInfo = () => requests({
     headers: {
         // 'content-type': 'application/json',
         Accept: 'application/vnd.github+json',
-        'Authorization': 'token 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'
+        'Authorization': 'token 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'
     }
 })
 
@@ -22,7 +22,7 @@ export const Repositories = () => requests({
     headers: {
         // 'content-type': 'application/json',
         Accept: 'application/vnd.github+json',
-        'Authorization': 'token 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'
+        'Authorization': 'token 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'
     }
 })
 

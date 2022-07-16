@@ -60,11 +60,9 @@
 
     <div>
       <li>
-        <a :href="usersrepos.name">
           <p class="reposa">{{ usersrepos.name }}</p>
           <p class="reposa">Repos</p>
           <!-- fork和个人仓库 -->
-        </a>
       </li>
     </div>
   </div>
