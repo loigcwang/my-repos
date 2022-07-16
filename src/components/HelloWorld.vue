@@ -9,36 +9,42 @@
         <h1 class="name">{{ users.name }}</h1>
         <!-- 名称-->
       </div>
-      <!-- <div class="qianming">
+      <div class="qianming">
         <div class="autograph">
           {{ users.bio }}
         </div>
-      </div> -->
+      </div>
       <div class="nax">
         <ul>
-          <a :href="users.public_repos">
-            <li class="repos">
+          <li>
+            <a :href="users.repos_url">
               <p class="reposa">{{ users.public_repos }}</p>
-              <p>Repos</p>
+              <p class="reposa">Repos</p>
               <!-- fork和个人仓库 -->
-            </li>
-          </a>
-          <li>
-            <p class="contnt">{{ users.followers }}</p>
-            <p class="fontsize">Followes</p>
-            <!-- 跟随者 -->
+            </a>
           </li>
-          <li class="namea">
-            <p>{{ users.followers }}</p>
-            <p class="fontsize">Starred</p>
-            <!-- start仓库 -->
+
+          <li>
+            <a :href="users.followers_url">
+              <p class="contnt">{{ users.followers }}</p>
+              <p class="fontsize">Followes</p>
+              <!-- 跟随者 -->
+            </a>
+          </li>
+
+          <li>
+            <a :href="users.starred_url">
+              <p class="contnt">{{ users.followers }}</p>
+              <p class="fontsize">Starred</p>
+              <!-- start仓库 -->
+            </a>
           </li>
           <li>
-            <a :href="users.following">
+            <a :href="users.following_url">
               <p class="contnt">{{ users.following }}</p>
               <p class="fontsize">Following</p>
+              <!-- 被跟随者 -->
             </a>
-            <!-- 被跟随者 -->
           </li>
           <li>
             <a :href="users.following">
@@ -49,14 +55,24 @@
           </li>
         </ul>
       </div>
+      <!-- github个人信息 -->
     </header>
+
+    <div>
+      <li>
+        <a :href="usersrepos.name">
+          <p class="reposa">{{ usersrepos.name }}</p>
+          <p class="reposa">Repos</p>
+          <!-- fork和个人仓库 -->
+        </a>
+      </li>
+    </div>
   </div>
 </template>
 
 <script>
 // 引入API接口
-import { getUserInfo, reqCategoryList } from "../API/index";
-
+import { getUserInfo, Repositories } from "../API/index";
 export default {
   data() {
     //参数
@@ -64,22 +80,35 @@ export default {
       alt: "xxx",
       title: "test",
       users: {},
+      usersrepos: [{
+        name:" ",
+      }],
     };
   },
-  // 两种调动接口的方法
+  // 调动接口的方法
   mounted() {
-    reqCategoryList().then((data) => {
-      // console.log("数据内容>>>>>", data.data);
-      this.tableData = data.data;
-    });
+    // reqCategoryList().then((data) => {
+    //   // console.log("数据内容>>>>>", data.data);
+    //   this.tableData = data.data;
+    // });
+    // 个人信息
     getUserInfo().then((data) => {
       console.log(data.data);
       // this.tableData = data.data;
       this.users = data.data;
     });
+    // 仓库信息
+    Repositories().then((data) => {
+      console.log(data.data);
+      // this.tableData = data.data;
+      this.usersrepos = data.data;
+      console.log('------------', this.usersrepos)
+
+    });
   },
 };
 </script>
+
 <style >
 .header-top {
   position: relative;
@@ -118,7 +147,6 @@ ul,
 li {
   list-style: none;
 }
-
 .header-top .nax {
   text-align: center;
   border-top: 1px solid #efefef;
@@ -144,6 +172,9 @@ li {
   font-size: 1rem;
   font-weight: bold;
 }
+.header-top .nax ul a {
+  color: #333;
+}
 .fontsize {
   font-size: 0.75rem;
   color: #9a9a9a;
@@ -159,8 +190,7 @@ a {
   font-size: 1rem;
   font-weight: bold;
 }
-
-.namea :hover {
-  color: #bd081c;
+.header-top .nax .contnt {
+  font-weight: bold;
 }
 </style>

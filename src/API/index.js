@@ -1,20 +1,28 @@
-//index.js
 import requests from './request'
-//例如
-//三级联动接口
-//接口地址  请求方式  有无参数 ----注释
-//——get 无参
-
 
 export const reqCategoryList = () => requests({ url: 'http://localhost:3721/api/user/list', method: 'GET' })
 
+// 个人信息
 export const getUserInfo = () => requests({
     url: 'https://api.github.com/users/logicwang',
     method: 'GET',
     headers: {
         // 'content-type': 'application/json',
         Accept: 'application/vnd.github+json',
-        'Authorization': 'token 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'
+        'Authorization': 'token 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'
+    }
+})
+
+
+
+// 仓库信息
+export const Repositories = () => requests({
+    url: 'https://api.github.com/users/logicwang/repos',
+    method: 'GET',
+    headers: {
+        // 'content-type': 'application/json',
+        Accept: 'application/vnd.github+json',
+        'Authorization': 'token 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'
     }
 })
 
