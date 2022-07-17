@@ -9,11 +9,11 @@
         <h1 class="name">{{ users.name }}</h1>
         <!-- 名称-->
       </div>
-      <div class="qianming">
+      <!-- <div class="qianming">
         <div class="autograph">
           {{ users.bio }}
         </div>
-      </div>
+      </div> -->
       <div class="nax">
         <ul>
           <li>
@@ -47,8 +47,8 @@
             </a>
           </li>
           <li>
-            <a :href="users.following">
-              <p class="contnt">{{ users.following }}</p>
+            <a :href="users.Start">
+              <p class="contnt">{{ users.Start }}</p>
               <p class="fontsize">Start</p>
             </a>
             <!-- 点赞仓库 -->
@@ -59,10 +59,10 @@
     </header>
 
     <div>
+      <!-- fork和个人仓库 -->
       <li>
-          <p class="reposa">{{ usersrepos.name }}</p>
-          <p class="reposa">Repos</p>
-          <!-- fork和个人仓库 -->
+        <p class="reposa">{{ usersrepos.name }}</p>
+        <p class="reposa">Repos</p>
       </li>
     </div>
   </div>
@@ -78,9 +78,8 @@ export default {
       alt: "xxx",
       title: "test",
       users: {},
-      usersrepos: [{
-        name:" ",
-      }],
+      usersrepos: [],
+      usersstart: [],
     };
   },
   // 调动接口的方法
@@ -91,17 +90,17 @@ export default {
     // });
     // 个人信息
     getUserInfo().then((data) => {
-      console.log(data.data);
+      // console.log(data.data);
       // this.tableData = data.data;
       this.users = data.data;
+      console.log("---github个人信息---", this.users);
     });
     // 仓库信息
     Repositories().then((data) => {
-      console.log(data.data);
+      // console.log(data.data);
       // this.tableData = data.data;
       this.usersrepos = data.data;
-      console.log('------------', this.usersrepos)
-
+      console.log("---github repos---", this.usersrepos);
     });
   },
 };
@@ -146,10 +145,10 @@ li {
   list-style: none;
 }
 .header-top .nax {
-  text-align: center;
-  border-top: 1px solid #efefef;
-  padding: 0 0 0.9375rem 0;
-  margin-top: 1.15rem;
+     text-align: center;
+    border-top: 1px solid #efefef;
+    padding: 0 0 0.9375rem 0;
+    margin-top: 1.5625rem;
 }
 .header-top .nax .repos {
   color: #bd081c !important;
@@ -190,5 +189,12 @@ a {
 }
 .header-top .nax .contnt {
   font-weight: bold;
+}
+.name {
+  margin-top: 1.25rem;
+  margin-bottom: 2.5rem;
+  font-size: 1.875rem;
+  line-height: 1.875rem;
+  height: 1.875rem;
 }
 </style>

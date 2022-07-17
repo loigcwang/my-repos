@@ -1,6 +1,6 @@
 import requests from './request'
 
-export const reqCategoryList = () => requests({ url: 'http://localhost:3721/api/user/list', method: 'GET' })
+// export const reqCategoryList = () => requests({ url: 'http://localhost:3721/api/user/list', method: 'GET' })
 
 // 个人信息
 export const getUserInfo = () => requests({
@@ -9,20 +9,20 @@ export const getUserInfo = () => requests({
     headers: {
         // 'content-type': 'application/json',
         Accept: 'application/vnd.github+json',
-        'Authorization': 'token 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'
+        'Authorization': 'token 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'
     }
 })
 
 
 
-// 仓库信息
+// repos
 export const Repositories = () => requests({
     url: 'https://api.github.com/users/logicwang/repos',
     method: 'GET',
     headers: {
         // 'content-type': 'application/json',
         Accept: 'application/vnd.github+json',
-        'Authorization': 'token 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'
+        'Authorization': 'token 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'
     }
 })
 
