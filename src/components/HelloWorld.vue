@@ -19,7 +19,7 @@
           <li>
             <a :href="users.repos_url">
               <p class="reposa">{{ users.public_repos }}</p>
-              <p class="reposa">Repos</p>
+              <p class="reposa">Repo</p>
               <!-- fork和个人仓库 -->
             </a>
           </li>
