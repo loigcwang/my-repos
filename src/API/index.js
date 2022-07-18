@@ -2,14 +2,14 @@ import requests from './request'
 
 // export const reqCategoryList = () => requests({ url: 'http://localhost:3721/api/user/list', method: 'GET' })
 
-// 个人信息
+// user
 export const getUserInfo = () => requests({
     url: 'https://api.github.com/users/logicwang',
     method: 'GET',
     headers: {
         // 'content-type': 'application/json',
         Accept: 'application/vnd.github+json',
-        'Authorization': 'token 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'
+        'Authorization': 'token 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'
     }
 })
 
@@ -22,7 +22,7 @@ export const Repositories = () => requests({
     headers: {
         // 'content-type': 'application/json',
         Accept: 'application/vnd.github+json',
-        'Authorization': 'token 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'
+        'Authorization': 'token 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'
     }
 })
 

@@ -20,7 +20,7 @@
             <a :href="users.repos_url">
               <p class="reposa">{{ users.public_repos }}</p>
               <p class="reposa">Repo</p>
-              <!-- fork和个人仓库 -->
+              <!-- user -->
             </a>
           </li>
 
@@ -28,7 +28,7 @@
             <a :href="users.followers_url">
               <p class="contnt">{{ users.followers }}</p>
               <p class="fontsize">Followes</p>
-              <!-- 跟随者 -->
+              <!-- Followes -->
             </a>
           </li>
 
@@ -36,14 +36,14 @@
             <a :href="users.starred_url">
               <p class="contnt">{{ users.followers }}</p>
               <p class="fontsize">Starred</p>
-              <!-- start仓库 -->
+              <!-- Star -->
             </a>
           </li>
           <li>
             <a :href="users.following_url">
               <p class="contnt">{{ users.following }}</p>
               <p class="fontsize">Following</p>
-              <!-- 被跟随者 -->
+              <!-- Following -->
             </a>
           </li>
           <li>
@@ -51,15 +51,15 @@
               <p class="contnt">{{ users.Start }}</p>
               <p class="fontsize">Start</p>
             </a>
-            <!-- 点赞仓库 -->
+            <!-- Start -->
           </li>
         </ul>
       </div>
-      <!-- github个人信息 -->
+      <!-- github user -->
     </header>
 
     <div>
-      <!-- fork和个人仓库 -->
+      <!-- repos -->
       <li>
         <p class="reposa">{{ usersrepos.name }}</p>
         <p class="reposa">Repos</p>
@@ -88,14 +88,14 @@ export default {
     //   // console.log("数据内容>>>>>", data.data);
     //   this.tableData = data.data;
     // });
-    // 个人信息
+    // github users
     getUserInfo().then((data) => {
       // console.log(data.data);
       // this.tableData = data.data;
       this.users = data.data;
       console.log("---github个人信息---", this.users);
     });
-    // 仓库信息
+    // repos
     Repositories().then((data) => {
       // console.log(data.data);
       // this.tableData = data.data;
