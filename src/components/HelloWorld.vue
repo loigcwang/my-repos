@@ -47,8 +47,8 @@
             </a>
           </li>
           <li>
-            <a :href="users.Start">
-              <p class="contnt">{{ users.Start }}</p>
+            <a :href="users.following_url">
+              <p class="contnt">{{ users.following }}</p>
               <p class="fontsize">Start</p>
             </a>
             <!-- Start -->
@@ -59,18 +59,26 @@
     </header>
 
     <div>
-      <!-- repos -->
-      <li>
-        <p class="reposa">{{ usersrepos.name }}</p>
-        <p class="reposa">Repos</p>
-      </li>
+      <ul class="my-repos">
+        <div class="card-item">
+          <li class="namebbb" v-for="wang in repos" :key="wang.name">
+            <p class="name-repos">{{ wang.name }}</p>
+            <span class="language" v-if="repos">{{
+              lan.repos
+            }}</span>
+            <span class="wenben">{{ wang.description }}</span>
+          </li>
+
+          <!-- repos -->
+        </div>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
 // 引入API接口
-import { getUserInfo, Repositories } from "../API/index";
+import { getUserInfo, getRepos } from "../API/index";
 export default {
   data() {
     //参数
@@ -78,7 +86,7 @@ export default {
       alt: "xxx",
       title: "test",
       users: {},
-      usersrepos: [],
+      repos: [],
       usersstart: [],
     };
   },
@@ -96,11 +104,11 @@ export default {
       console.log("---github个人信息---", this.users);
     });
     // repos
-    Repositories().then((data) => {
-      // console.log(data.data);
+    getRepos(1, 100).then((data) => {
+      console.log(data);
       // this.tableData = data.data;
-      this.usersrepos = data.data;
-      console.log("---github repos---", this.usersrepos);
+      this.repos = data.data;
+      console.dir(this.repos[0]);
     });
   },
 };
@@ -145,10 +153,10 @@ li {
   list-style: none;
 }
 .header-top .nax {
-     text-align: center;
-    border-top: 1px solid #efefef;
-    padding: 0 0 0.9375rem 0;
-    margin-top: 1.5625rem;
+  text-align: center;
+  border-top: 1px solid #efefef;
+  padding: 0 0 0.9375rem 0;
+  margin-top: 1.5625rem;
 }
 .header-top .nax .repos {
   color: #bd081c !important;
@@ -196,5 +204,35 @@ a {
   font-size: 1.875rem;
   line-height: 1.875rem;
   height: 1.875rem;
+}
+.my-repos {
+  padding: 1.25rem;
+}
+
+/* .my-repos .namebbb {
+      padding: 0.3125rem;
+    width: 25%;
+    float: left;
+    margin: 0;
+} */
+.my-repos li {
+  padding: 0.3125rem;
+  width: 25%;
+}
+.card-item {
+  background-color: #fff;
+  border-radius: 0.3125rem;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 22%);
+  padding: 0.625rem;
+}
+.wenben {
+  height: 4.25rem;
+  padding: 0.625rem 0 0.9375rem 0;
+  display: block;
+  overflow: hidden;
+  color: #323232;
+  font-size: 0.875rem;
+  text-overflow: ellipsis;
+  line-height: 1.125rem;
 }
 </style>

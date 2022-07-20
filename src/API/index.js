@@ -9,20 +9,49 @@ export const getUserInfo = () => requests({
     headers: {
         // 'content-type': 'application/json',
         Accept: 'application/vnd.github+json',
-        'Authorization': 'token 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'
+        'Authorization': 'token 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'
     }
 })
 
+export async function getRepos(page = 1, per_page = 100) {
+    const res = await requests({
+        url: `https://api.github.com/users/logicwang/repos?page=${page}&per_page=${per_page}`,
+        method: 'GET',
+        headers: {
+            'content-type': 'application/json',
+            // Accept: 'application/vnd.github+json',
+            'Authorization': 'token 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'
+        }
+    });
+    // console.log(res.headers)res.headers.link
+
+    if (!res.headers.link) {
+        return Promise.resolve({
+            data: res.data,
+            page: []
+        });
+    }
+    const pageData = res.headers.link.split(',').map(item => {
+        const type = item.match(/rel="(.+)"/)[1];
+        const url = item.match(/<(.+)>/)[1]
+        return { type, url }
+    });
+
+    return Promise.resolve({
+        data: res.data,
+        page: pageData
+    });
+}
 
 
 // repos
-export const Repositories = () => requests({
-    url: 'https://api.github.com/users/logicwang/repos',
+export const Repositories = (page = 1) => requests({
+    url: `https://api.github.com/users/logicwang/repos?page=${page}&per_page=5`,
     method: 'GET',
     headers: {
         // 'content-type': 'application/json',
         Accept: 'application/vnd.github+json',
-        'Authorization': 'token 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'
+        'Authorization': 'token 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'
     }
 })
 
