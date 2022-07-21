@@ -4,23 +4,23 @@ import requests from './request'
 
 // user
 export const getUserInfo = () => requests({
-    url: 'https://api.github.com/users/logicwang',
+    url: 'https://api.github.com/users/loigcwang',
     method: 'GET',
     headers: {
         // 'content-type': 'application/json',
         Accept: 'application/vnd.github+json',
-        'Authorization': 'token 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'
+        'Authorization': 'token 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'
     }
 })
 
 export async function getRepos(page = 1, per_page = 100) {
     const res = await requests({
-        url: `https://api.github.com/users/logicwang/repos?page=${page}&per_page=${per_page}`,
+        url: `https://api.github.com/users/loigcwang/repos?page=${page}&per_page=${per_page}`,
         method: 'GET',
         headers: {
             'content-type': 'application/json',
             // Accept: 'application/vnd.github+json',
-            'Authorization': 'token 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'
+            'Authorization': 'token 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'
         }
     });
     // console.log(res.headers)res.headers.link

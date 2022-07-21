@@ -60,15 +60,18 @@
 
     <div>
       <ul class="my-repos">
-        <div class="card-item">
-          <li class="namebbb" v-for="wang in repos" :key="wang.name">
-            <p class="name-repos">{{ wang.name }}</p>
-            <span class="language" v-if="repos">{{
-              lan.repos
-            }}</span>
+        <div>
+          <li class="card-item" v-for="wang in repos" :key="wang.name">
+            <a :href="html_url">
+              <p class="wang">{{ wang.name }}</p>
+            </a>
+            <span class="language">{{ wang.language }}</span>
+            <span
+              ><a>Star<i>51392</i></a></span
+            >
             <span class="wenben">{{ wang.description }}</span>
+            <div class="clear"></div>
           </li>
-
           <!-- repos -->
         </div>
       </ul>
@@ -115,6 +118,9 @@ export default {
 </script>
 
 <style >
+.clear {
+  clear: both;
+}
 .header-top {
   position: relative;
   padding: 1.875rem 0.9375rem 0 0.9375rem;
@@ -218,6 +224,7 @@ a {
 .my-repos li {
   padding: 0.3125rem;
   width: 25%;
+  float: left;
 }
 .card-item {
   background-color: #fff;
@@ -234,5 +241,21 @@ a {
   font-size: 0.875rem;
   text-overflow: ellipsis;
   line-height: 1.125rem;
+}
+.my-repos.card-item a {
+  float: left;
+  font-size: 1rem;
+}
+.wang {
+  float: left;
+  font-size: 1rem;
+}
+.language {
+  display: block;
+  line-height: 1.4375rem;
+  height: 1.4375rem;
+  font-size: 0.875rem;
+  text-align: right;
+  color: #8e8e8e;
 }
 </style>
