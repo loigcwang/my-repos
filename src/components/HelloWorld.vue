@@ -60,15 +60,27 @@
 
     <div>
       <ul class="my-repos">
-        <div>
+        <div class="flex">
           <li class="card-item" v-for="wang in repos" :key="wang.name">
-            <a :href="html_url">
+            <a :href="wang.html_url">
               <p class="wang">{{ wang.name }}</p>
             </a>
+
             <span class="language">{{ wang.language }}</span>
-            <span
-              ><a>Star<i>51392</i></a></span
-            >
+            <div class="dex">
+              <span>
+                <a :href="wang.starUrl" class="star">
+                  Star
+                  <i class="count">{{ wang.stargazers_count }}</i>
+                </a>
+              </span>
+              <span>
+                <a :href="wang.forks_url" class="star">
+                  Fork
+                  <i class="count">{{ wang.forks }}</i>
+                </a>
+              </span>
+            </div>
             <span class="wenben">{{ wang.description }}</span>
             <div class="clear"></div>
           </li>
@@ -110,7 +122,15 @@ export default {
     getRepos(1, 100).then((data) => {
       console.log(data);
       // this.tableData = data.data;
-      this.repos = data.data;
+      this.repos = data.data.map((item,nameaaaaaaa) => {
+        return {
+          ...item,
+          starUrl: `https://github.com/${item.full_name}/stargazers`,
+          
+          ...nameaaaaaaa,
+          forkUrl:'https://github.com/${item.full_name}/network/members'
+        };
+      });
       console.dir(this.repos[0]);
     });
   },
@@ -223,8 +243,8 @@ a {
 } */
 .my-repos li {
   padding: 0.3125rem;
-  width: 25%;
-  float: left;
+  width: 23%;
+  /* float: left; */
 }
 .card-item {
   background-color: #fff;
@@ -246,8 +266,12 @@ a {
   float: left;
   font-size: 1rem;
 }
+.card-item:hover {
+  box-shadow: 0 1px 2px 0 rgba(0, 105, 255, 0.69);
+}
 .wang {
   float: left;
+  color: #33374b;
   font-size: 1rem;
 }
 .language {
@@ -257,5 +281,40 @@ a {
   font-size: 0.875rem;
   text-align: right;
   color: #8e8e8e;
+}
+.flex {
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.dex {
+  padding-top: 0.625rem;
+}
+.my-repos .flex .card-item .dex .star {
+  border: 0.0625rem solid #e3e3e3;
+  border-radius: 0.1875rem;
+  padding-left: 0.3125rem;
+  line-height: 1.125rem;
+  display: inline-block;
+  font-size: 0.75rem;
+  background-color: #efefef;
+  color: #000;
+  overflow: hidden;
+  margin-left: 4px;
+}
+.my-repos .flex .card-item .dex .star:hover {
+    color: #bd081c;
+    background-color: #ffecec;
+    border: .0625rem solid #bd081c
+}
+.my-repos .flex .card-item .dex .count {
+  line-height: 1.125rem;
+  display: inline-block;
+  padding: 0 0.3125rem;
+  background-color: #fff;
+  margin-left: 0.3125rem;
+  font-style: inherit;
+  font-weight: bold;
 }
 </style>
