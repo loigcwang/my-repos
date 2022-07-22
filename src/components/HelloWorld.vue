@@ -6,7 +6,9 @@
         <!-- 头像 -->
       </div>
       <div class="users">
-        <h1 class="name">{{ users.name }}</h1>
+        <a :href="users.html_url">
+          <h1 class="name">{{ users.name }}</h1>
+        </a>
         <!-- 名称-->
       </div>
       <!-- <div class="qianming">
@@ -17,7 +19,7 @@
       <div class="nax">
         <ul>
           <li>
-            <a :href="users.repos_url">
+            <a :href="users.reopsUrl">
               <p class="reposa">{{ users.public_repos }}</p>
               <p class="reposa">Repo</p>
               <!-- user -->
@@ -65,7 +67,6 @@
             <a :href="wang.html_url">
               <p class="wang">{{ wang.name }}</p>
             </a>
-
             <span class="language">{{ wang.language }}</span>
             <div class="dex">
               <span>
@@ -94,6 +95,18 @@
         </div>
       </ul>
     </div>
+
+    <footer class="footer">
+      <div class="text-center">
+        <small class="copyright"
+          >Copyright © 2022.Company name All rights reserved.<a
+            target="_blank"
+            href="http://sc.chinaz.com/moban/"
+            >网页模板</a
+          ></small
+        >
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -132,7 +145,7 @@ export default {
         return {
           ...item,
           starUrl: `https://github.com/${item.full_name}/stargazers`,
-          forkUrl:  `https://github.com/${item.full_name}/network/members`,
+          forkUrl: `https://github.com/${item.full_name}/network/members`,
         };
       });
       console.dir(this.repos[0]);
@@ -234,6 +247,7 @@ a {
   font-size: 1.875rem;
   line-height: 1.875rem;
   height: 1.875rem;
+  color: #333;
 }
 .my-repos {
   padding: 1.25rem;
@@ -309,9 +323,9 @@ a {
   margin-left: 4px;
 }
 .my-repos .flex .card-item .dex .star:hover {
-    color: #bd081c;
-    background-color: #ffecec;
-    border: .0625rem solid #bd081c
+  color: #bd081c;
+  background-color: #ffecec;
+  border: 0.0625rem solid #bd081c;
 }
 .my-repos .flex .card-item .dex .count {
   line-height: 1.125rem;
@@ -321,5 +335,26 @@ a {
   margin-left: 0.3125rem;
   font-style: inherit;
   font-weight: bold;
+}
+.footer {
+  padding: 30px;
+  padding-top: 60px;
+}
+.foot-link {
+  display: inline-block;
+  color: #d1d1d1;
+  margin-bottom: 25px;
+  text-decoration: none;
+}
+.copyright {
+  line-height: 1.6;
+  color: #545e6c;
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+}
+.foot-link a {
+  color: #2d7788;
+  text-decoration: none;
 }
 </style>
