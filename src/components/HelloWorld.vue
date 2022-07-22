@@ -24,7 +24,7 @@
             </a>
           </li>
 
-          <li>
+          <li class="followes">
             <a :href="users.followers_url">
               <p class="contnt">{{ users.followers }}</p>
               <p class="fontsize">Followes</p>
@@ -75,8 +75,14 @@
                 </a>
               </span>
               <span>
-                <a :href="wang.forks_url" class="star">
+                <a :href="wang.forkUrl" class="star">
                   Fork
+                  <i class="count">{{ wang.forks }}</i>
+                </a>
+              </span>
+              <span>
+                <a :href="wang.html_url" class="star">
+                  Home
                   <i class="count">{{ wang.forks }}</i>
                 </a>
               </span>
@@ -122,13 +128,11 @@ export default {
     getRepos(1, 100).then((data) => {
       console.log(data);
       // this.tableData = data.data;
-      this.repos = data.data.map((item,nameaaaaaaa) => {
+      this.repos = data.data.map((item) => {
         return {
           ...item,
           starUrl: `https://github.com/${item.full_name}/stargazers`,
-          
-          ...nameaaaaaaa,
-          forkUrl:'https://github.com/${item.full_name}/network/members'
+          forkUrl:  `https://github.com/${item.full_name}/network/members`,
         };
       });
       console.dir(this.repos[0]);
@@ -272,6 +276,7 @@ a {
 .wang {
   float: left;
   color: #33374b;
+  font-weight: 800;
   font-size: 1rem;
 }
 .language {
