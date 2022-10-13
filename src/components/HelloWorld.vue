@@ -11,11 +11,6 @@
         </a>
         <!-- 名称-->
       </div>
-      <!-- <div class="qianming">
-        <div class="autograph">
-          {{ users.bio }}
-        </div>
-      </div> -->
       <div class="nax">
         <ul>
           <li>
