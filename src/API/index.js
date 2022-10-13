@@ -9,7 +9,7 @@ export const getUserInfo = () => requests({
     headers: {
         // 'content-type': 'application/json',
         Accept: 'application/vnd.github+json',
-        'Authorization': 'token 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'
+        'Authorization': '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'
     }
 })
 
@@ -20,7 +20,7 @@ export async function getRepos(page = 1, per_page = 100) {
         headers: {
             'content-type': 'application/json',
             // Accept: 'application/vnd.github+json',
-            'Authorization': 'token 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'
+            'Authorization': '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'
         }
     });
     // console.log(res.headers)res.headers.link
